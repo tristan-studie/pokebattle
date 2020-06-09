@@ -1,3 +1,4 @@
 <?php
-define("CLASS PATH", "classes");
+define("CLASS_PATH", "classes/");
+
  ?>

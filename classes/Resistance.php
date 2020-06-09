@@ -1,6 +1,10 @@
 <?php
 class Resistance {
  public $name;
- public $multiply;
+ public $value;
+ public function __construct($name, $value){
+   $this->name = $name;
+   $this->value = $value;
+ }
 }
  ?>
