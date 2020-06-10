@@ -27,6 +27,10 @@ public function getHealth() {
   return $this->health;
 }
 
+public function attack($target) {
+
+}
+
 public static function getPopulationHealth() {
 
 }
