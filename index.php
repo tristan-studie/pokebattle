@@ -15,7 +15,7 @@ $electricMouse->attack($electricMouse->attack[0], $livingTorch);
 echo $livingTorch->name . " : " .  $livingTorch->getHealth() . "<br>";
 echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
 
-$livingTorch->attack($electricMouse->attack[1], $electricMouse);
+$livingTorch->attack($livingTorch->attack[1], $electricMouse);
 //Attack 2
 echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
 

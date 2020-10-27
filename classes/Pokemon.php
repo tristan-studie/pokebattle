@@ -40,8 +40,9 @@ public function attack($attack, $target) {
   }
   if ($damageMultiplier) {
 
-    $damageDone = $damageDone * $damageMultiplier;
+    $damageDone = ($damageDone * $damageMultiplier);
   }
+
   $target->health = $target->health - $damageDone;
 
 }
@@ -58,6 +59,7 @@ public function checkResist($attackingEnergy){
 }
 
 public function checkWeakness($attackingEnergy){
+
 if ($this->weakness->name == $attackingEnergy) {
   $damageMultiplier = $this->weakness->multiply;
   return $damageMultiplier;
