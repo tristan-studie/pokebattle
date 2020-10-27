@@ -27,12 +27,43 @@ public function getHealth() {
   return $this->health;
 }
 
-public function attack($target) {
+public function attack($attack, $target) {
+  $attackingEnergy = $this->energyType;
+
+  $damageReduce = $target->checkResist($attackingEnergy);
+  $damageMultiplier = $target->checkWeakness($attackingEnergy);
+
+
+  $damageDone = $attack->damage;
+  if ($damageReduce) {
+    $damageDone = $damageDone - $damageReduce;
+  }
+  if ($damageMultiplier) {
+
+    $damageDone = $damageDone * $damageMultiplier;
+  }
+  $target->health = $target->health - $damageDone;
 
 }
 
-public static function getPopulationHealth() {
+public function checkResist($attackingEnergy){
 
+  if ($this->resistance->name == $attackingEnergy) {
+    $damageReduce = $this->resistance->value;
+
+    return $damageReduce;
+  } else {
+    return;
+  }
+}
+
+public function checkWeakness($attackingEnergy){
+if ($this->weakness->name == $attackingEnergy) {
+  $damageMultiplier = $this->weakness->multiply;
+  return $damageMultiplier;
+} else {
+  return;
+}
 }
 
 public function __toString(){

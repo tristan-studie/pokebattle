@@ -4,8 +4,19 @@ spl_autoload_register(function ($class) {
     include CLASS_PATH . $class . '.php';
 });
 
-$test_subject = new Pikachu('test');
+$electricMouse = new Pikachu('Electric Mouse');
+$livingTorch = new Charmeleon("Living Torch");
 
-echo $test_subject->getHealth();
-echo $test_subject;
+echo $livingTorch->name . " : " .  $livingTorch->getHealth() . "<br>";
+
+$electricMouse->attack($electricMouse->attack[0], $livingTorch);
+
+//Attack 1
+echo $livingTorch->name . " : " .  $livingTorch->getHealth() . "<br>";
+echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
+//Attack 2
+echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
+
+
+
  ?>
