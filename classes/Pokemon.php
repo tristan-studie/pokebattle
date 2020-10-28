@@ -1,12 +1,13 @@
 <?php
 class Pokemon {
-  public $name;
-  public $energyType;
-  public $hitpoints;
-  public $health;
-  public $attack;
-  public $weakness;
-  public $resistance;
+  private $name;
+  private $energyType;
+  private $hitpoints;
+  private $health;
+  private $attack;
+  private $weakness;
+  private $resistance;
+  static $totalPokemons;
 
 public function __construct($name, $energyType, $hitpoints, $health, $attack, $weakness, $resistance){
     $this->name = $name;
@@ -16,19 +17,36 @@ public function __construct($name, $energyType, $hitpoints, $health, $attack, $w
     $this->attack = $attack;
     $this->weakness = $weakness;
     $this->resistance = $resistance;
+
   }
 
 
 public static function getPopulation() {
-
+  return self::$totalPokemons++;
 }
 
 public function getHealth() {
   return $this->health;
 }
 
+public function getName(){
+  return $this->name;
+}
+public function getEnergy(){
+  return $this->energyType;
+}
+public function getWeakness(){
+  return $this->weakness;
+}
+public function getResistance(){
+  return $this->resistance;
+}
+public function getAttack($i){
+  return $this->attack[$i];
+}
+
 public function attack($attack, $target) {
-  $attackingEnergy = $this->energyType;
+  $attackingEnergy = $this->getEnergy();
 
   $damageReduce = $target->checkResist($attackingEnergy);
   $damageMultiplier = $target->checkWeakness($attackingEnergy);
@@ -49,8 +67,8 @@ public function attack($attack, $target) {
 
 public function checkResist($attackingEnergy){
 
-  if ($this->resistance->name == $attackingEnergy) {
-    $damageReduce = $this->resistance->value;
+  if ($this->getResistance()->name == $attackingEnergy) {
+    $damageReduce = $this->getResistance()->value;
 
     return $damageReduce;
   } else {
@@ -60,8 +78,8 @@ public function checkResist($attackingEnergy){
 
 public function checkWeakness($attackingEnergy){
 
-if ($this->weakness->name == $attackingEnergy) {
-  $damageMultiplier = $this->weakness->multiply;
+if ($this->getWeakness()->name == $attackingEnergy) {
+  $damageMultiplier = $this->getWeakness()->multiply;
   return $damageMultiplier;
 } else {
   return;

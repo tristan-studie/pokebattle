@@ -6,18 +6,17 @@ spl_autoload_register(function ($class) {
 
 $electricMouse = new Pikachu('Electric Mouse');
 $livingTorch = new Charmeleon("Living Torch");
+echo $livingTorch->getName() . " : " .  $livingTorch->getHealth() . "<br>";
 
-echo $livingTorch->name . " : " .  $livingTorch->getHealth() . "<br>";
-
-$electricMouse->attack($electricMouse->attack[0], $livingTorch);
+$electricMouse->attack($electricMouse->getAttack(0), $livingTorch);
 
 //Attack 1
-echo $livingTorch->name . " : " .  $livingTorch->getHealth() . "<br>";
-echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
+echo $livingTorch->getName() . " : " .  $livingTorch->getHealth() . "<br>";
+echo $electricMouse->getName() . " : " .  $electricMouse->getHealth() . "<br>";
 
-$livingTorch->attack($livingTorch->attack[1], $electricMouse);
+$livingTorch->attack($livingTorch->getAttack(1), $electricMouse);
 //Attack 2
-echo $electricMouse->name . " : " .  $electricMouse->getHealth() . "<br>";
+echo $electricMouse->getName() . " : " .  $electricMouse->getHealth() . "<br>";
 
 
 
