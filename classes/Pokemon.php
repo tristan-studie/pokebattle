@@ -7,7 +7,7 @@ class Pokemon {
   private $attack;
   private $weakness;
   private $resistance;
-  static $totalPokemons;
+  public static $totalPokemons = 0;
 
 public function __construct($name, $energyType, $hitpoints, $health, $attack, $weakness, $resistance){
     $this->name = $name;
@@ -17,12 +17,13 @@ public function __construct($name, $energyType, $hitpoints, $health, $attack, $w
     $this->attack = $attack;
     $this->weakness = $weakness;
     $this->resistance = $resistance;
+    self::$totalPokemons++;
 
   }
 
 
 public static function getPopulation() {
-  return self::$totalPokemons++;
+  return Pokemon::$totalPokemons;
 }
 
 public function getHealth() {
@@ -62,7 +63,9 @@ public function attack($attack, $target) {
   }
 
   $target->health = $target->health - $damageDone;
-
+  if ($target->health <= 0) {
+    Pokemon::$totalPokemons--;
+  }
 }
 
 public function checkResist($attackingEnergy){

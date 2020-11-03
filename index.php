@@ -4,8 +4,10 @@ spl_autoload_register(function ($class) {
     include CLASS_PATH . $class . '.php';
 });
 
+
 $electricMouse = new Pikachu('Electric Mouse');
 $livingTorch = new Charmeleon("Living Torch");
+echo "population: " .  Pokemon::getPopulation() . "<br>";
 echo $livingTorch->getName() . " : " .  $livingTorch->getHealth() . "<br>";
 
 $electricMouse->attack($electricMouse->getAttack(0), $livingTorch);
