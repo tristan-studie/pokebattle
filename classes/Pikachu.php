@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Pikachu extends Pokemon {
   public function __construct($name){
     $energyType = "Lightning";

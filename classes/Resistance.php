@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Resistance {
  public $name;
  public $value;

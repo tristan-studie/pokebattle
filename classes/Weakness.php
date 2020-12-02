@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Weakness {
  public $name;
  public $multiply;

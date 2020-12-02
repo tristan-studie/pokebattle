@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Attack {
   public $name;
   public $damage;

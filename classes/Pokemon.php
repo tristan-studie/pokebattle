@@ -1,4 +1,5 @@
 <?php
+namespace classes;
 class Pokemon {
   private $name;
   private $energyType;
@@ -21,31 +22,39 @@ public function __construct($name, $energyType, $hitpoints, $health, $attack, $w
 
   }
 
-
+//get the population total of the pokemons
 public static function getPopulation() {
   return Pokemon::$totalPokemons;
 }
-
+//Get the health of the specified pokemon
 public function getHealth() {
   return $this->health;
 }
-
+//Set the health of the specified pokemon
+public function setHealth($health){
+ $this->health = $health;
+}
+//Get the name of the specified pokemon
 public function getName(){
   return $this->name;
 }
+//Get the energytype of the specified pokemon
 public function getEnergy(){
   return $this->energyType;
 }
+//Get the weakness of the specified pokemon
 public function getWeakness(){
   return $this->weakness;
 }
+//Get the resistance of the specified pokemmon
 public function getResistance(){
   return $this->resistance;
 }
+//Get the specified attack of the specified pokemon
 public function getAttack($i){
   return $this->attack[$i];
 }
-
+//Attack an other pokemon
 public function attack($attack, $target) {
   $attackingEnergy = $this->getEnergy();
 
@@ -61,13 +70,17 @@ public function attack($attack, $target) {
 
     $damageDone = ($damageDone * $damageMultiplier);
   }
+  $target->damage($damageDone);
+}
 
-  $target->health = $target->health - $damageDone;
-  if ($target->health <= 0) {
+public function damage($damageDone){
+  $newHealth = $this->getHealth() - $damageDone;
+  $this->setHealth($newHealth);
+  if ($this->getHealth() <= 0) {
     Pokemon::$totalPokemons--;
   }
 }
-
+//Check if there are resists that have to be applied
 public function checkResist($attackingEnergy){
 
   if ($this->getResistance()->name == $attackingEnergy) {
@@ -78,7 +91,7 @@ public function checkResist($attackingEnergy){
     return;
   }
 }
-
+//Check if there are weaknesses that have to be applied
 public function checkWeakness($attackingEnergy){
 
 if ($this->getWeakness()->name == $attackingEnergy) {
